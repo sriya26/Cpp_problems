@@ -15,18 +15,12 @@ public:
             return head;
         }
 
-        ListNode* prev=NULL;
-        ListNode* curr=head;
-        ListNode* forward=NULL;
+        ListNode* newhead = reverseList(head->next);
+        ListNode* front= head->next;
+        front->next=head;
+        head->next=NULL;
 
-        while(curr!=NULL){
-            forward=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=forward;
-        }
-
-        return prev;
+        return newhead;
         
     }
 };
