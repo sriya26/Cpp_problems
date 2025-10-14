@@ -19,6 +19,7 @@ public:
             if((curr->next!=NULL) && (curr->val==curr->next->val)){
                 ListNode* next_next=curr->next->next;
                 ListNode* next_del=curr->next;
+                next_del->next=NULL;
                 delete(next_del);
                 curr->next=next_next;
             }
