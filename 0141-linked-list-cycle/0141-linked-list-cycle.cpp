@@ -12,16 +12,15 @@ public:
         if(head==NULL){
             return false;
         }
-        map<ListNode*, int> visited;
-        ListNode* temp=head;
-        while(temp!=NULL){
-            if(visited[temp]==1){
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast){
                 return true;
             }
-            visited[temp]=1;
-            temp=temp->next;
         }
-
         return false;
         
     }
