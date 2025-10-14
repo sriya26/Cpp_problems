@@ -14,19 +14,24 @@ public:
         if(head==NULL){
             return head;
         }
+        map<int, bool> dupe;
         ListNode* curr=head;
+        ListNode* prev=NULL;
         while(curr!=NULL){
-            if((curr->next!=NULL) && (curr->val==curr->next->val)){
-                ListNode* next_next=curr->next->next;
-                ListNode* next_del=curr->next;
-                next_del->next=NULL;
-                delete(next_del);
-                curr->next=next_next;
-            }
-            else{
+            if(!dupe[curr->val]){
+                dupe[curr->val]=true;
+                prev=curr;
                 curr=curr->next;
             }
+            else{
+                prev->next=curr->next;
+                ListNode* del= curr;
+                del->next=NULL;
+                delete del;
+                curr=prev->next;
+            }
         }
+
         return head;
         
     }
